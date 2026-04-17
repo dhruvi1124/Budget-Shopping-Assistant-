@@ -45,6 +45,11 @@ const name=document.getElementById('item-name').value;
 const price=parseInt(document.getElementById('item-price').value);
 const value=parseInt(document.getElementById('item-value').value);
 
+if(price < 0 || value < 0){
+alert("Price and Value cannot be negative");
+return;
+}
+
 items.push({
 id:nextId++,
 name,
@@ -74,13 +79,17 @@ resetVisualization();
 // RUN
 btnRun.addEventListener('click',()=>{
 
-budget=parseInt(budgetInput.value);
+budget = parseInt(budgetInput.value);
 
-if(isNaN(budget) || budget<=0){
-alert("Please enter a valid budget");
+if(isNaN(budget) || budget < 0){
+alert("Budget cannot be negative");
 return;
 }
 
+if(budget === 0){
+alert("Budget must be greater than 0");
+return;
+}
 startAlgorithm();
 
 });
@@ -167,6 +176,11 @@ let newPrice=prompt("Edit Item Price",item.price);
 let newValue=prompt("Edit Item Value",item.value);
 
 if(newName!==null && newPrice!==null && newValue!==null){
+
+if(newPrice < 0 || newValue < 0){
+alert("Price and Value cannot be negative");
+return;
+}
 
 item.name=newName;
 item.price=parseInt(newPrice);
