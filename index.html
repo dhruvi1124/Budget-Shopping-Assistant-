@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Budget Shopping Assistant – Knapsack DP</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app-container">
+
+<header class="app-header">
+<h1>🛒 Budget Shopping Assistant</h1>
+<p>Optimize your cart with the 0/1 Knapsack Algorithm</p>
+</header>
+
+<main class="dashboard">
+
+<!-- LEFT PANEL -->
+<section class="panel panel-left card">
+
+<!-- Budget -->
+<div class="panel-section">
+<h2>1. Set Budget</h2>
+
+<div class="input-group">
+<label for="budget-input"> Budget</label>
+<input type="number" id="budget-input" value="10">
+</div>
+</div>
+
+
+<!-- Add Items -->
+<div class="panel-section">
+<h2>2. Add Items</h2>
+
+<form id="add-item-form" class="horizontal-form">
+
+<input type="text" id="item-name" placeholder="Item Name" required>
+
+<input type="number" id="item-price" placeholder="Price" required>
+
+<input type="number" id="item-value" placeholder="Value" required>
+
+<button type="submit" id="btn-add" class="btn btn-primary">
+Add Item
+</button>
+
+</form>
+</div>
+
+
+<!-- Item Cart -->
+<div class="panel-section">
+
+<div class="section-header">
+<h2>3. Item Cart</h2>
+
+<button id="btn-clear" class="btn btn-outline">
+Clear Cart
+</button>
+</div>
+
+<div class="table-container-fixed">
+
+<table class="item-table">
+
+<thead>
+<tr>
+<th>Item</th>
+<th>Price</th>
+<th>Value</th>
+<th>Actions</th>
+
+</tr>
+
+</thead>
+
+<tbody id="cart-list"></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- RIGHT PANEL -->
+<section class="panel panel-right card">
+
+<!-- Controls -->
+<div class="panel-section">
+
+
+
+<h2>4. Controls</h2>
+
+<div class="button-group">
+
+<button id="btn-run" class="btn btn-success">
+Run Algorithm
+</button>
+<button id="btn-stop" class="btn btn-danger">
+Stop
+</button>
+
+<div class="playback-controls">
+<label for="speed-slider">Speed</label>
+<input type="range" id="speed-slider" min="1" max="100" value="50">
+</div>
+</div>
+
+
+
+</div>
+
+
+<!-- DP Table -->
+<div class="panel-section">
+
+<div class="viz-header">
+<h2>DP Table</h2>
+<span id="algo-status" class="status-badge"></span>
+</div>
+
+<div id="dp-table-container" class="dp-table-container">
+
+<div class="empty-state">
+<p>Add items and run algorithm to visualize.</p>
+</div>
+
+</div>
+
+</div>
+
+
+<!-- Result -->
+<div class="panel-section result-section">
+
+<h2>Result</h2>
+
+<div id="result-content" class="empty-state">
+<p>Results will appear here.</p>
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
