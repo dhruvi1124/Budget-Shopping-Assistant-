@@ -278,7 +278,7 @@ flex:1;
 
 /* ITEM TABLE */
 .table-container-fixed{
-max-height:180px;
+max-height:135px;
 overflow-y:auto;
 overflow-x:hidden;
 border:1px solid var(--border-color);
