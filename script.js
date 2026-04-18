@@ -1,8 +1,8 @@
 // STATE
-let items = [];
+let items = [];                                //Array of Object
 let budget = 0;
 let nextId = 1;
-let dp = [];
+let dp = [];                                  //2-D array
 
 let isRunning = false;
 let shouldStop = false;
@@ -23,11 +23,30 @@ const speedSlider = document.getElementById('speed-slider');
 const dpTableContainer = document.getElementById('dp-table-container');
 const resultContent = document.getElementById('result-content');
 
+function saveData() {                                                            //To save Locally
+    localStorage.setItem("items", JSON.stringify(items));
+    localStorage.setItem("budget", budget);
+}
 
+function loadData() {
+    const savedItems = localStorage.getItem("items");
+    const savedBudget = localStorage.getItem("budget");
+
+    if (savedItems) {
+        items = JSON.parse(savedItems);
+        nextId = items.length ? Math.max(...items.map(i => i.id)) + 1 : 1;
+    }
+
+    if (savedBudget) {
+        budget = parseInt(savedBudget);
+        budgetInput.value = budget;
+    }
+}
 // INIT
 function init(){
 
 budgetInput.value="";
+loadData();  
 
 renderCart();
 
@@ -44,11 +63,16 @@ e.preventDefault();
 const name=document.getElementById('item-name').value;
 const price=parseInt(document.getElementById('item-price').value);
 const value=parseInt(document.getElementById('item-value').value);
+  
 
-if(price < 0 || value < 0){
-alert("Price and Value cannot be negative");
-return;
-}
+// if(price < 0 || value < 0){
+// alert("Price and Value cannot be negative");
+// return;
+// }
+if (!name || price <= 0 || value <= 0) {
+      alert("Enter valid item details");
+      return;
+}  
 
 items.push({
 id:nextId++,
@@ -56,7 +80,7 @@ name,
 price,
 value
 });
-
+saveData();
 addItemForm.reset();
 
 renderCart();
@@ -69,7 +93,7 @@ btnClear.addEventListener('click',()=>{
 
 items=[];
 nextId=1;
-
+saveData();
 renderCart();
 resetVisualization();
 
@@ -155,7 +179,7 @@ btn.addEventListener('click',e=>{
 const id=parseInt(e.currentTarget.dataset.id);
 
 items=items.filter(i=>i.id!==id);
-
+saveData();
 renderCart();
 resetVisualization();
 
@@ -185,7 +209,7 @@ return;
 item.name=newName;
 item.price=parseInt(newPrice);
 item.value=parseInt(newValue);
-
+saveData();
 renderCart();
 resetVisualization();
 
